@@ -1,5 +1,8 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
+<p align="center">
+  <a href="" target="_blank">
+    <img src="https://raw.githubusercontent.com/mourarenato/vax-platform/refs/heads/master/frontend/public/images/homepage-vax.png" width="600">
+  </a>
+</p>
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"></a>
 <a href="https://packagist.org/packages/laravel/framework"></a>
