@@ -1,44 +1,10 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-yarn install (inside docker container)
-yarn build:icons (inside docker container)
-sudo chmod 777 -R frontend/node_modules
-yarn dev (inside docker to start server)
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+<a href="https://travis-ci.org/laravel/framework"></a>
+<a href="https://packagist.org/packages/laravel/framework"></a>
+<a href="https://packagist.org/packages/laravel/framework"></a>
+<a href="https://packagist.org/packages/laravel/framework"></a>
 </p>
 
 ## About Laravel
@@ -46,14 +12,23 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 Laravel is a web application framework with expressive, elegant syntax.
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## About Next.js
+
+Next.js is a React framework for building fast, scalable web applications with features like server-side rendering 
+and static site generation. It simplifies development and optimizes performance.
+
 ## Project Information
 
-This project is a Laravel application that simulates a library management system.
+This project is a vaccine management system for tracking vaccines and vaccinated individuals. 
+It is built with Next.js for the front-end, based on the [Materio Free Template](https://github.com/themeselection/materio-mui-nextjs-admin-template-free), 
+and Laravel for the back-end. The system uses Docker for containerization and JWT for secure authentication.
 
-Directory Structure Based on Domain-Driven Design (DDD)
+> The system follows **Clean Code** principles, **SOLID** principles, and architectural techniques such as **Controller-Service-Repository** and **DDD** on the backend. **Unit testing** is also implemented to ensure reliability. On the front-end, **lazy loading** techniques optimize performance, while the back-end utilizes **queue processing** for background tasks.
+
+Laravel directory structure based on Domain-Driven Design (DDD)
 -------------------
-
-      config/             contains application configurations
+    ...
+    backend/
 
       app/
 
@@ -100,185 +75,44 @@ Directory Structure Based on Domain-Driven Design (DDD)
 
                                     ...
 
+Next.js directory structure (App Router)
+-------------------
+    ...
+    frontend/
+
+      src/
+        
+         @core/              ... MUI componentes
+         @layouts/
+         @menu/
+
+         app/                 route pages
+            ...
+            api/              backend apis
+            ...
+
+         components/          general React Components
+         context/             React Contexts
+         hooks/               React Hooks
+         services/            api services
+         views/               all views used mainly in /app
+
+                                    ...
+
 Installation
 ------------
 
-### Getting started with docker
+### Getting started with Docker
 
-1. Copy `docker-compose.example.yml` to `docker-compose.yml` and `.env.example` to `.env`
-2. Configure the environment `JWT_SECRET` in the backend and front end
-2. Run `docker compose up -d`
-3. Make sure all containers are running
-4. Run `docker exec -it library-api bash` to access docker container
-5. Inside container run `composer install`
-6. Make sure you have all databases created (production and test) in Postgres
-7. Inside container run `php artisan key:generate && php artisan jwt:secret` to create keys
-8. Inside container run `php artisan migrate` to apply migrations
-9. Inside container run `php artisan migrate --database=testing` to apply migrations in database tests
-10. Run `php artisan db:seed` to feed the database
+#### General settings:
 
-Then, you can access the application through the following URL:
-
-    http://10.10.0.72:80
-
-Using the project
--------
-
-#### Create a user:
-
-Endpoint (POST): http://10.10.0.72/api/signup
-
-```
-{
-   "username": "mynickname",
-   "name": "Renato Moura",
-   "password": "mypassword",
-}
-```
-
-#### Afterward, you need to authenticate to get your bearer token:
-
-Endpoint (POST): http://10.10.0.72/api/signin
-
-```
-{
-   "username": "mynickname",
-   "password": "mypassword",
-}
-```
-
-Now you are logged and can access others endpoints
-
------
-
-#### If you want to signout (invalidate token):
-
-Endpoint (POST): http://10.10.0.72/api/signout
-
------
-
-#### Examples of valid requests:
-
-- `To create an author`:
-
-Endpoint (POST): http://10.10.0.72/api/createAuthor
-
-```
-{
-   "name": "Machado de Assis",
-   "birthdate": "1839-06-21"
-}
-```
-
-Obs: You can only add 1 author per request
-
------
-
-- `To get a list of authors (with pagination)`:
-
-Endpoint (GET): http://10.10.0.72/api/getAuthors
-
-Using query params:
-
-```
-http://10.10.0.72/getAuthors?perPage=20&orderBy=email&orderDirection=desc&filters[name]=Machado
-```
-
------
-
-- `To update an author`:
-
-Endpoint (PUT): http://10.10.0.72/api/updateAuthor
-
-```
-{
-   "id": 3,
-   "name": "João Guimarães Rosa"
-}
-```
-
-Obs: You can only update 1 author per request
-
------
-
-- `To delete an author`:
-
-Endpoint (DELETE): http://10.10.0.72/api/deleteAuthor
-
-```
-{
-    "id": 1
-}
-```
-
-Obs: You can only delete 1 author per request
-
------
-
-- `To add a book`:
-
-Endpoint (POST): http://10.10.0.72/api/createBook
-
-```
-{
-   "title": "Desencantos",
-   "publication_year": 1861,
-   "author_id": 1
-}
-```
-
-Obs: You can only add 1 book per request (there is no queue processing)
-
------
-
-- `To get a list of books (with Pagination)`:
-
-Endpoint (GET): http://10.10.0.72/api/getBooks
-
-Using query params:
-
-```
-http://10.10.0.72/getBooks?perPage=20&orderBy=email&orderDirection=desc&filters[name]=Machado
-```
-
------
-
-- `To update a book`:
-
-Endpoint (PUT): http://10.10.0.72/api/updateBook
-
-```
-{
-    "id": 1,
-    "publication_year": 1862
-}
-```
-
-Obs: You can only update 1 book per request
-
------
-
-- `To delete a book`:
-
-Endpoint (DELETE): http://10.10.0.72/api/deleteBook
-
-```
-{
-    "id": 1
-}
-```
-
-Obs: You can only delete 1 book per request
-
------
-
-- `To add a loan`:
-
-Endpoint (POST): http://10.10.0.72/api/createLoan
-
-Inside docker container, run: `php artisan queue:work`
-
-Then, configure Mailtrap credentials in .env:
+1. Copy `docker-compose.example.yml` to `docker-compose.yml`
+2. In the `/frontend` and `/backend` directories copy `.env.example` to `.env`
+3. Configure the environment `JWT_SECRET` in the backend and front end
+4. Run `docker compose up -d`
+5. Make sure all containers are running
+6. Make sure you have all databases created (production and test) in Postgres (see the `.env` in backend project)
+7. Don't forget about to configure your Mailtrap credentials in .env:
 
 ```
 MAIL_MAILER=smtp
@@ -289,29 +123,26 @@ MAIL_PASSWORD=your-password
 MAIL_ENCRYPTION=tls
 ```
 
-Now you can proceed with the request:
+#### Backend:
 
-```
-{
-   "book_id": 1,
-   "loan_date": "2024-12-01",
-   "return_date": "2025-01-01"
-}
-```
+8. Run `docker exec -it vax-api bash` to access the docker container
+9. Inside the container run `composer install`
+10. Run `php artisan key:generate && php artisan jwt:secret` to create keys
+11. Run `php artisan migrate` to apply migrations
+12. Run `php artisan migrate --database=testing` to apply migrations in database tests
+13. Run `php artisan db:seed` to feed the database
+14. Run `php artisan queue:work` to start the queue processing
 
-Obs: You can only add 1 loan per request
+#### Frontend:
 
------
+15. Run `docker exec -it next-app bash` to access the docker container
+16. Inside the container run `yarn install`
+17. Run `yarn build:icons` to build the icons (first time only)
+17. Run `yarn dev` to start the server
 
-- `To get a list of loans (with Pagination)`:
+Then, you can access the application through the following URL:
 
-Endpoint (GET): http://10.10.0.72/api/getLoans
-
-Using query params:
-
-```
-http://10.10.0.72/getLoans?perPage=20&orderBy=email&orderDirection=desc&filters[book_id]=1
-```
+    http://10.10.0.22:3000/
 
 -----
 
