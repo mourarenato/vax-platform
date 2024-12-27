@@ -1,0 +1,61 @@
+backend/node_modules
+backend/public/hot
+backend/public/storage
+backend/storage/*.key
+backend/vendor
+backend/.env
+backend/.env.backup
+backend/.phpunit.result.cache
+backend/docker-compose.override.yml
+backend/Homestead.json
+backend/Homestead.yaml
+backend/npm-debug.log
+backend/yarn-error.log
+backend/.idea
+backend/data
+backend/.vscode
+backend/front/dist
+backend/front/node_modules
+backend/bootstrap/cache
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+frontend/node_modules
+frontend/.pnp
+frontend/.pnp.js
+
+# testing
+frontend/coverage
+
+# next.js
+frontend/.next/
+frontend/out/
+
+# production
+frontend/build
+
+# misc
+frontend/.DS_Store
+frontend/*.pem
+
+# debug
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.pnpm-debug.log*
+
+# local env files
+frontend/.env*.local
+frontend/.env
+
+# vercel
+frontend/.vercel
+
+# typescript
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+
+# icon generated file
+frontend/src/assets/iconify-icons/generated-icons.js
+frontend/src/assets/iconify-icons/generated-icons.css
