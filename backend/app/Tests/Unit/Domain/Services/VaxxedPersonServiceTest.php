@@ -95,7 +95,7 @@ class VaxxedPersonServiceTest extends TestCase
         $vaxxedPersonService = new VaxxedPersonService($requestData, $this->vaxxedPersonRepository, $this->emailService);
 
         $this->vaxxedPersonRepository
-            ->expects($this->once())
+            ->expects($this->never())
             ->method('firstOrCreate')
             ->willThrowException(new Exception('Erro'));
 

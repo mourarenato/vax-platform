@@ -3,6 +3,7 @@
 namespace App\Interfaces\Middleware;
 
 use App\Application\Exceptions\VaccineNotFoundException;
+use App\Application\Exceptions\VaxxedPersonAlreadyExistsException;
 use App\Application\Exceptions\VaxxedPersonNotFoundException;
 use App\Application\Exceptions\CreateVaccineException;
 use App\Application\Exceptions\CreateVaxxedPersonException;
@@ -100,6 +101,18 @@ class HandleVaxExceptions
                 return response()->json([
                     'success' => false,
                     'message' => 'Error trying to create vaxxed person',
+                    'errors' => $e->getMessage()
+                ], Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+
+            if ($e instanceof VaxxedPersonAlreadyExistsException) {
+                Log::error(
+                    'Error trying to create vaxxed person. Cpf has already been registered!',
+                    ['user_id' => $this->getCurrentUserId(), 'error' => $e->getMessage()]
+                );
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error trying to create vaxxed person. Cpf has already been registered!',
                     'errors' => $e->getMessage()
                 ], Response::HTTP_INTERNAL_SERVER_ERROR);
             }

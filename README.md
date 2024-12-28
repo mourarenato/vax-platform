@@ -128,20 +128,22 @@ MAIL_ENCRYPTION=tls
 
 #### Backend:
 
-8. Run `docker exec -it vax-api bash` to access the docker container
-9. Inside the container run `composer install`
-10. Run `php artisan key:generate && php artisan jwt:secret` to create keys
-11. Run `php artisan migrate` to apply migrations
-12. Run `php artisan migrate --database=testing` to apply migrations in database tests
-13. Run `php artisan db:seed` to feed the database
-14. Run `php artisan queue:work` to start the queue processing
+1. Copy `.env.example.testing` to `.env`
+2. Run `php artisan key:generate --env=testing`
+3. Run `docker exec -it vax-api bash` to access the docker container
+4. Inside the container run `composer install`
+5. Run `php artisan key:generate && php artisan jwt:secret` to create keys
+6. Run `php artisan migrate` to apply migrations
+7. Run `php artisan migrate --database=testing` to apply migrations in database tests
+8. Run `php artisan db:seed` to feed the database
+9. Run `php artisan queue:work` to start the queue processing
 
 #### Frontend:
 
-15. Run `docker exec -it next-app bash` to access the docker container
-16. Inside the container run `yarn install`
-17. Run `yarn build:icons` to build the icons (first time only)
-17. Run `yarn dev` to start the server
+1. Run `docker exec -it next-app bash` to access the docker container
+2. Inside the container run `yarn install`
+3. Run `yarn build:icons` to build the icons (first time only)
+4. Run `yarn dev` to start the server
 
 Then, you can access the application through the following URL:
 

@@ -13,6 +13,11 @@ class VaxxedPersonRepository implements BaseRepositoryInterface
         return VaxxedPerson::where('id', $id)->first();
     }
 
+    public function getByCpf(string $cpf): ?VaxxedPerson
+    {
+        return VaxxedPerson::where('hash_cpf', hash('sha256', $cpf))->first();
+    }
+
     public function deleteById(int $id): void
     {
         VaxxedPerson::where('id', $id)->delete();
@@ -50,7 +55,7 @@ class VaxxedPersonRepository implements BaseRepositoryInterface
 
         if (!empty($paginationDto->filters)) {
             foreach ($paginationDto->filters as $key => $value) {
-                $query->where($key, 'like', "%$value%");
+                $query->where($key, 'ilike', "%$value%");
             }
         }
 

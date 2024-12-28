@@ -15,6 +15,7 @@
         "laravel/sanctum": "^2.8",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.7",
+        "laravellegends/pt-br-validator": "^11.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "mikehaertl/phpwkhtmltopdf": "^2.5",
         "tightenco/ziggy": "^1.0",

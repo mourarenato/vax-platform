@@ -21,12 +21,6 @@ class VaccineSeeder extends Seeder
         ]);
 
         Vaccine::create([
-            'name' => 'Pfizer',
-            'lot' => 'B456',
-            'expiry_date' => '2026-02-15',
-        ]);
-
-        Vaccine::create([
             'name' => 'Moderna',
             'lot' => 'C789',
             'expiry_date' => '2026-03-30',
@@ -39,69 +33,69 @@ class VaccineSeeder extends Seeder
         ]);
 
         Vaccine::create([
+            'name' => 'Pfizer',
+            'lot' => 'B456',
+            'expiry_date' => '2026-02-15',
+        ]);
+
+        Vaccine::create([
             'name' => 'Janssen',
             'lot' => 'E112',
             'expiry_date' => '2025-08-12',
         ]);
 
         Vaccine::create([
-            'name' => 'BCG',
+            'name' => 'Sputnik V',
             'lot' => 'F131',
             'expiry_date' => '2027-07-01',
         ]);
 
         Vaccine::create([
-            'name' => 'Hepatitis B',
+            'name' => 'Covaxin',
             'lot' => 'G141',
             'expiry_date' => '2026-06-10',
         ]);
 
         Vaccine::create([
-            'name' => 'MMR (Measles, Mumps, Rubella)',
+            'name' => 'Sinopharm',
             'lot' => 'H151',
             'expiry_date' => '2026-09-21',
         ]);
 
         Vaccine::create([
-            'name' => 'Polio',
+            'name' => 'Novavax',
             'lot' => 'I161',
             'expiry_date' => '2025-04-15',
         ]);
 
         Vaccine::create([
-            'name' => 'Varicella (Chickenpox)',
+            'name' => 'Covovax',
             'lot' => 'J171',
             'expiry_date' => '2027-03-11',
         ]);
 
         Vaccine::create([
-            'name' => 'HPV',
+            'name' => 'Pfizer Bivalent',
             'lot' => 'K181',
             'expiry_date' => '2026-12-01',
         ]);
 
         Vaccine::create([
-            'name' => 'Yellow Fever',
+            'name' => 'Moderna Bivalent',
             'lot' => 'L191',
             'expiry_date' => '2028-05-20',
         ]);
 
         Vaccine::create([
-            'name' => 'Typhoid',
+            'name' => 'CanSinoBIO',
             'lot' => 'M202',
             'expiry_date' => '2026-10-15',
         ]);
 
         Vaccine::create([
-            'name' => 'Rabies',
+            'name' => 'Zifivax',
             'lot' => 'N212',
             'expiry_date' => '2027-02-08',
-        ]);
-
-        Vaccine::create([
-            'name' => 'Influenza',
-            'lot' => 'O223',
-            'expiry_date' => '2025-09-30',
         ]);
     }
 }

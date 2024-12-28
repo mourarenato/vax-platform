@@ -22,7 +22,7 @@ class VaxxedPersonController extends Controller
     public function create(Request $request): JsonResponse
     {
         $this->validate($request, [
-            'cpf' => ['required', 'string', 'regex:/^\d{11}$|^\d{3}\.\d{3}\.\d{3}-\d{2}$/'],
+            'cpf' => ['required', 'cpf'],
             'vaccine_id' => ['nullable', 'integer'],
             'full_name' => ['required', 'string', 'min:2', 'max:200'],
             'birthdate' => ['required', 'date'],
@@ -56,7 +56,7 @@ class VaxxedPersonController extends Controller
             'orderDirection' => ['sometimes', 'nullable', 'string', 'in:asc,desc'],
             'filters' => ['sometimes', 'array'],
             'filters.vaccine_id' => ['nullable', 'integer'],
-            'filters.cpf' => ['nullable', 'string'],
+            'filters.cpf' => ['nullable', 'cpf'],
             'filters.full_name' => ['nullable', 'string'],
         ]);
 

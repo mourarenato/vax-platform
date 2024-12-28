@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('vaccine_id')->nullable();
             $table->foreign('vaccine_id')->references('id')->on('vaccines');
-            $table->string('cpf')->nullable()->unique()->index();
+            $table->string('cpf')->unique()->index();
+            $table->string('hash_cpf')->unique()->index();
             $table->string('full_name')->nullable();
             $table->dateTime('birthdate')->nullable();
             $table->dateTime('first_dose')->nullable();

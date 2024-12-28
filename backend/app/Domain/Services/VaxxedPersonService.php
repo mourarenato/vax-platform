@@ -7,6 +7,7 @@ use App\Application\Dtos\PaginationDto;
 use App\Application\Exceptions\CreateVaxxedPersonException;
 use App\Application\Exceptions\DeleteVaxxedPersonException;
 use App\Application\Exceptions\UpdatevaxxedPersonException;
+use App\Application\Exceptions\VaxxedPersonAlreadyExistsException;
 use App\Application\Exceptions\vaxxedPersonNotFoundException;
 use App\Application\Services\EmailService;
 use App\Domain\Repositories\VaxxedPersonRepository;
@@ -26,12 +27,15 @@ class VaxxedPersonService
 
     /**
      * @throws CreateVaxxedPersonException
+     * @throws VaxxedPersonAlreadyExistsException
      */
     public function createVaxxedPerson(): void
     {
         try {
-            $data = $this->requestData;
-            $vaxxedPerson = $this->vaxxedPersonRepository->firstOrCreate($data);
+            if ($this->vaxxedPersonRepository->getByCpf($this->requestData['cpf'])) {
+                throw new VaxxedPersonAlreadyExistsException();
+            }
+            $vaxxedPerson = $this->vaxxedPersonRepository->firstOrCreate($this->requestData);
             $emailDto = new EmailDto();
             $emailDto->attachValues([
                 'receiver' => 'mytestmail@example.com',
@@ -39,6 +43,8 @@ class VaxxedPersonService
                 'body' => $vaxxedPerson->toArray(),
             ]);
             $this->emailService->sendEmail($emailDto);
+        }  catch (VaxxedPersonAlreadyExistsException $e) {
+            throw $e;
         } catch (Throwable $e) {
             throw new CreateVaxxedPersonException();
         }

@@ -131,19 +131,19 @@ class VaccineServiceTest extends TestCase
                 'id' => 2,
                 'name' => 'Johnson & Johnson',
                 'lot' => 'D012',
-                'expiry_date' => '2026-09-10 00:00:00',
+                'expiry_date' => '2026-09-10',
             ],
             [
                 'id' => 3,
                 'name' => 'Moderna',
                 'lot' => 'C789',
-                'expiry_date' => '2027-03-21 00:00:00',
+                'expiry_date' => '2027-03-21',
             ],
             [
                 'id' => 1,
                 'name' => 'CoronaVac',
                 'lot' => 'A123',
-                'expiry_date' => '2025-01-01 00:00:00',
+                'expiry_date' => '2025-01-01',
             ],
         ];
 
@@ -200,7 +200,7 @@ class VaccineServiceTest extends TestCase
                 'id' => 1,
                 'name' => 'CoronaVac',
                 'lot' => 'A123',
-                'expiry_date' => '2025-01-01 00:00:00',
+                'expiry_date' => '2025-01-01',
             ],
         ];
 

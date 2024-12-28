@@ -13,7 +13,8 @@ class VaxxedPersonFactory extends Factory
     {
         return [
             'vaccine_id' => $this->faker->numberBetween(1, 100),
-            'cpf' => '91285978005',
+            'cpf' => '460.793.440-25',
+            'hash_cpf' => '560cfffac9124fcae46bbd4562b378ea58e6524f6173ec6ae8ca0b190d1d3d4d',
             'full_name' => $this->faker->name,
             'birthdate' => '1985-01-01',
             'first_dose' => '2020-01-01',

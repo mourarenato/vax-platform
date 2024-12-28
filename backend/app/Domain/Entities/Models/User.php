@@ -2,6 +2,7 @@
 
 namespace App\Domain\Entities\Models;
 
+use App\Application\Security\SensitiveDataProcessorTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,6 +11,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+    use SensitiveDataProcessorTrait;
 
     protected $table = 'users';
 
@@ -24,11 +26,6 @@ class User extends Authenticatable implements JWTSubject
         'password',
     ];
 
-    protected array $sensitiveAttributes = [
-        'email',
-        'password',
-    ];
-
     protected static function booted(): void
     {
         static::updating(function ($user) {
@@ -36,17 +33,12 @@ class User extends Authenticatable implements JWTSubject
         });
 
         static::creating(function ($user) {
-            $user->encryptAttributes();
+            $user->bcryptPassword();
         });
-    }
 
-    public function encryptAttributes(): void
-    {
-        foreach ($this->sensitiveAttributes as $attribute) {
-            if (isset($this->attributes[$attribute]) && $attribute == 'password') {
-                $this->attributes[$attribute] = bcrypt($this->attributes[$attribute]);
-            }
-        }
+        static::retrieved(function ($user) {
+            $user->decryptAttributes();
+        });
     }
 
     public function getJWTIdentifier()
